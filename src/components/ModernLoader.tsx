@@ -62,15 +62,6 @@ const ModernLoader: React.FC<ModernLoaderProps> = ({ onFinish }) => {
             color: string;
         }> = [];
 
-        const priceArrows: Array<{
-            x: number;
-            y: number;
-            size: number;
-            opacity: number;
-            speed: number;
-            rotation: number;
-        }> = [];
-
         // Green and gold colors for bullish theme
         const bullishColors = ['#00FF88', '#32CD32', '#00FA54', '#90EE90', '#FFD700', '#FFA500'];
         
@@ -101,19 +92,6 @@ const ModernLoader: React.FC<ModernLoaderProps> = ({ onFinish }) => {
                 opacity: Math.random() * 0.8 + 0.3,
                 speed: Math.random() * 1.5 + 0.5,
                 color: bullishColors[Math.floor(Math.random() * bullishColors.length)],
-            });
-        }
-
-        // Generate upward arrows
-        const arrowCount = isMobile ? 15 : 30;
-        for (let i = 0; i < arrowCount; i++) {
-            priceArrows.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                size: Math.random() * 20 + 10,
-                opacity: Math.random() * 0.7 + 0.3,
-                speed: Math.random() * 3 + 1,
-                rotation: 0, // Pointing up
             });
         }
 
@@ -219,23 +197,6 @@ const ModernLoader: React.FC<ModernLoaderProps> = ({ onFinish }) => {
                 ctx.lineTo(line.x2, line.y2);
                 ctx.stroke();
 
-                // Draw arrow at end of trend line
-                const angle = Math.atan2(line.y2 - line.y1, line.x2 - line.x1);
-                const arrowLength = 15;
-                
-                ctx.beginPath();
-                ctx.moveTo(line.x2, line.y2);
-                ctx.lineTo(
-                    line.x2 - arrowLength * Math.cos(angle - Math.PI / 6),
-                    line.y2 - arrowLength * Math.sin(angle - Math.PI / 6)
-                );
-                ctx.moveTo(line.x2, line.y2);
-                ctx.lineTo(
-                    line.x2 - arrowLength * Math.cos(angle + Math.PI / 6),
-                    line.y2 - arrowLength * Math.sin(angle + Math.PI / 6)
-                );
-                ctx.stroke();
-
                 // Move trend lines
                 line.x1 -= line.speed;
                 line.x2 -= line.speed;
@@ -251,42 +212,6 @@ const ModernLoader: React.FC<ModernLoaderProps> = ({ onFinish }) => {
             });
 
             ctx.shadowBlur = 0;
-
-            // Draw upward arrows
-            priceArrows.forEach(arrow => {
-                ctx.globalAlpha = arrow.opacity;
-                ctx.fillStyle = '#FFD700';
-                ctx.strokeStyle = '#FFD700';
-                ctx.lineWidth = 2;
-
-                ctx.save();
-                ctx.translate(arrow.x, arrow.y);
-                ctx.rotate(arrow.rotation);
-
-                // Draw upward arrow
-                ctx.beginPath();
-                ctx.moveTo(0, -arrow.size);
-                ctx.lineTo(-arrow.size * 0.5, 0);
-                ctx.lineTo(-arrow.size * 0.2, 0);
-                ctx.lineTo(-arrow.size * 0.2, arrow.size * 0.5);
-                ctx.lineTo(arrow.size * 0.2, arrow.size * 0.5);
-                ctx.lineTo(arrow.size * 0.2, 0);
-                ctx.lineTo(arrow.size * 0.5, 0);
-                ctx.closePath();
-                ctx.fill();
-
-                ctx.restore();
-
-                // Move arrows upward
-                arrow.y -= arrow.speed;
-                arrow.x += (Math.random() - 0.5) * 0.5;
-
-                // Reset when off screen
-                if (arrow.y < -arrow.size) {
-                    arrow.y = canvas.height + arrow.size;
-                    arrow.x = Math.random() * canvas.width;
-                }
-            });
 
             // Draw floating dollar signs
             dollarSigns.forEach(dollar => {
