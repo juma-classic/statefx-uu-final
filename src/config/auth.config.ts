@@ -1,10 +1,10 @@
 // Authentication Configuration
 export const AUTH_CONFIG = {
     // Signals Center Password Protection
-    SIGNALS_PASSWORD: '777',
+    SIGNALS_PASSWORD: '2580',
 
     // Signal Savvy & Patel Signals Password Protection
-    PREMIUM_SIGNALS_PASSWORD: '6139',
+    PREMIUM_SIGNALS_PASSWORD: '2580',
 
     // Session timeout (24 hours in milliseconds)
     SESSION_TIMEOUT: 24 * 60 * 60 * 1000,
@@ -15,5 +15,5 @@ export const AUTH_CONFIG = {
     PATEL_SIGNALS_STORAGE_KEY: 'patel_signals_access_granted',
 
     // Contact information for access
-    CONTACT_INFO: 'Contact Leila Fx for access credentials',
+    CONTACT_INFO: 'Contact State FX for access credentials',
 } as const;
