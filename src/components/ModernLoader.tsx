@@ -23,11 +23,11 @@ const ModernLoader: React.FC<ModernLoaderProps> = ({ onFinish }) => {
         'Navigate markets with confidence',
         'Fast execution, reliable returns',
         'Growing your portfolio steadily',
-        'Leila Fx - Your path to financial freedom',
+        'State Fx - Your path to financial freedom',
         'Elevate your trading experience',
     ];
 
-    // Lightning-themed background animation with blue tech lines
+    // Bullish market-themed background animation
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
@@ -41,83 +41,119 @@ const ModernLoader: React.FC<ModernLoaderProps> = ({ onFinish }) => {
         // Detect mobile device
         const isMobile = window.innerWidth <= 768;
         
-        // Blue tech lines moving from right to left
-        const techLineCount = isMobile ? 15 : 30;
-        const techLines: Array<{
+        // Bullish market elements
+        const candlesticks: Array<{
             x: number;
             y: number;
-            length: number;
-            speed: number;
+            height: number;
+            width: number;
+            isBullish: boolean;
             opacity: number;
-            thickness: number;
+            speed: number;
+        }> = [];
+
+        const trendLines: Array<{
+            x1: number;
+            y1: number;
+            x2: number;
+            y2: number;
+            opacity: number;
+            speed: number;
             color: string;
         }> = [];
 
-        const blueShades = ['#00BFFF', '#1E90FF', '#4169E1', '#0080FF', '#00CED1', '#5F9EA0'];
-        
-        for (let i = 0; i < techLineCount; i++) {
-            techLines.push({
-                x: Math.random() * canvas.width + canvas.width,
-                y: Math.random() * canvas.height,
-                length: Math.random() * 150 + 50,
-                speed: Math.random() * 3 + 2,
-                opacity: Math.random() * 0.6 + 0.3,
-                thickness: Math.random() * 2 + 1,
-                color: blueShades[Math.floor(Math.random() * blueShades.length)],
-            });
-        }
-
-        // Lightning bolts
-        const lightningBolts: Array<{
+        const priceArrows: Array<{
             x: number;
             y: number;
-            segments: Array<{ x: number; y: number }>;
-            opacity: number;
-            lifetime: number;
-        }> = [];
-
-        // Electric particles
-        const particles: Array<{
-            x: number;
-            y: number;
-            vx: number;
-            vy: number;
             size: number;
             opacity: number;
-            color: string;
+            speed: number;
+            rotation: number;
         }> = [];
 
-        const particleCount = isMobile ? 30 : 60;
-        for (let i = 0; i < particleCount; i++) {
-            particles.push({
+        // Green and gold colors for bullish theme
+        const bullishColors = ['#00FF88', '#32CD32', '#00FA54', '#90EE90', '#FFD700', '#FFA500'];
+        
+        // Generate candlesticks
+        const candlestickCount = isMobile ? 20 : 40;
+        for (let i = 0; i < candlestickCount; i++) {
+            candlesticks.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                vx: (Math.random() - 0.5) * 2,
-                vy: (Math.random() - 0.5) * 2,
-                size: Math.random() * 3 + 1,
-                opacity: Math.random() * 0.5 + 0.2,
-                color: blueShades[Math.floor(Math.random() * blueShades.length)],
+                height: Math.random() * 60 + 20,
+                width: Math.random() * 8 + 4,
+                isBullish: Math.random() > 0.3, // 70% bullish candles
+                opacity: Math.random() * 0.6 + 0.2,
+                speed: Math.random() * 2 + 1,
             });
         }
 
-        // Grid lines for tech effect
-        const gridSpacing = isMobile ? 50 : 40;
-        const gridOpacity = 0.1;
+        // Generate upward trend lines
+        const trendLineCount = isMobile ? 8 : 15;
+        for (let i = 0; i < trendLineCount; i++) {
+            const startX = Math.random() * canvas.width;
+            const startY = canvas.height * 0.7 + Math.random() * canvas.height * 0.3;
+            trendLines.push({
+                x1: startX,
+                y1: startY,
+                x2: startX + Math.random() * 200 + 100,
+                y2: startY - Math.random() * 150 - 50, // Always going up
+                opacity: Math.random() * 0.8 + 0.3,
+                speed: Math.random() * 1.5 + 0.5,
+                color: bullishColors[Math.floor(Math.random() * bullishColors.length)],
+            });
+        }
+
+        // Generate upward arrows
+        const arrowCount = isMobile ? 15 : 30;
+        for (let i = 0; i < arrowCount; i++) {
+            priceArrows.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 20 + 10,
+                opacity: Math.random() * 0.7 + 0.3,
+                speed: Math.random() * 3 + 1,
+                rotation: 0, // Pointing up
+            });
+        }
+
+        // Dollar signs floating up
+        const dollarSigns: Array<{
+            x: number;
+            y: number;
+            size: number;
+            opacity: number;
+            speed: number;
+            rotation: number;
+        }> = [];
+
+        const dollarCount = isMobile ? 10 : 20;
+        for (let i = 0; i < dollarCount; i++) {
+            dollarSigns.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 30 + 15,
+                opacity: Math.random() * 0.5 + 0.2,
+                speed: Math.random() * 2 + 1,
+                rotation: Math.random() * 360,
+            });
+        }
 
         const draw = () => {
-            // Dark blue gradient background
+            // Bullish gradient background (dark green to gold)
             const bgGradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-            bgGradient.addColorStop(0, 'rgba(5, 10, 30, 0.98)');
-            bgGradient.addColorStop(0.5, 'rgba(10, 15, 40, 0.98)');
-            bgGradient.addColorStop(1, 'rgba(15, 20, 50, 0.98)');
+            bgGradient.addColorStop(0, 'rgba(0, 20, 10, 0.98)');
+            bgGradient.addColorStop(0.5, 'rgba(0, 30, 15, 0.98)');
+            bgGradient.addColorStop(1, 'rgba(10, 25, 5, 0.98)');
             ctx.fillStyle = bgGradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // Draw tech grid
-            ctx.globalAlpha = gridOpacity;
-            ctx.strokeStyle = '#00BFFF';
+            // Draw grid for trading chart feel
+            ctx.globalAlpha = 0.1;
+            ctx.strokeStyle = '#00FF88';
             ctx.lineWidth = 0.5;
 
+            const gridSpacing = isMobile ? 60 : 50;
             // Vertical grid lines
             for (let x = 0; x < canvas.width; x += gridSpacing) {
                 ctx.beginPath();
@@ -136,133 +172,146 @@ const ModernLoader: React.FC<ModernLoaderProps> = ({ onFinish }) => {
 
             ctx.globalAlpha = 1;
 
-            // Draw blue tech lines moving from right to left
-            techLines.forEach(line => {
-                ctx.globalAlpha = line.opacity;
-                ctx.strokeStyle = line.color;
-                ctx.lineWidth = line.thickness;
-                ctx.shadowBlur = 15;
-                ctx.shadowColor = line.color;
+            // Draw candlesticks
+            candlesticks.forEach(candle => {
+                ctx.globalAlpha = candle.opacity;
+                
+                if (candle.isBullish) {
+                    ctx.fillStyle = '#00FF88';
+                    ctx.strokeStyle = '#00FF88';
+                } else {
+                    ctx.fillStyle = '#FF4444';
+                    ctx.strokeStyle = '#FF4444';
+                }
 
-                // Draw horizontal line
+                // Draw candle body
+                ctx.fillRect(candle.x - candle.width/2, candle.y, candle.width, candle.height);
+                
+                // Draw wicks
+                ctx.lineWidth = 1;
                 ctx.beginPath();
-                ctx.moveTo(line.x, line.y);
-                ctx.lineTo(line.x - line.length, line.y);
+                ctx.moveTo(candle.x, candle.y - 10);
+                ctx.lineTo(candle.x, candle.y + candle.height + 10);
                 ctx.stroke();
 
-                // Draw arrow head at the front
-                const arrowSize = 5;
-                ctx.fillStyle = line.color;
+                // Move candles slowly upward (bullish movement)
+                candle.y -= candle.speed * 0.5;
+                candle.x += (Math.random() - 0.5) * 0.5; // Slight horizontal drift
+
+                // Reset when off screen
+                if (candle.y < -candle.height - 20) {
+                    candle.y = canvas.height + 20;
+                    candle.x = Math.random() * canvas.width;
+                    candle.isBullish = Math.random() > 0.3; // Keep 70% bullish
+                }
+            });
+
+            // Draw trend lines
+            trendLines.forEach(line => {
+                ctx.globalAlpha = line.opacity;
+                ctx.strokeStyle = line.color;
+                ctx.lineWidth = 2;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = line.color;
+
                 ctx.beginPath();
-                ctx.moveTo(line.x - line.length, line.y);
-                ctx.lineTo(line.x - line.length + arrowSize, line.y - arrowSize);
-                ctx.lineTo(line.x - line.length + arrowSize, line.y + arrowSize);
+                ctx.moveTo(line.x1, line.y1);
+                ctx.lineTo(line.x2, line.y2);
+                ctx.stroke();
+
+                // Draw arrow at end of trend line
+                const angle = Math.atan2(line.y2 - line.y1, line.x2 - line.x1);
+                const arrowLength = 15;
+                
+                ctx.beginPath();
+                ctx.moveTo(line.x2, line.y2);
+                ctx.lineTo(
+                    line.x2 - arrowLength * Math.cos(angle - Math.PI / 6),
+                    line.y2 - arrowLength * Math.sin(angle - Math.PI / 6)
+                );
+                ctx.moveTo(line.x2, line.y2);
+                ctx.lineTo(
+                    line.x2 - arrowLength * Math.cos(angle + Math.PI / 6),
+                    line.y2 - arrowLength * Math.sin(angle + Math.PI / 6)
+                );
+                ctx.stroke();
+
+                // Move trend lines
+                line.x1 -= line.speed;
+                line.x2 -= line.speed;
+
+                // Reset when off screen
+                if (line.x2 < 0) {
+                    line.x1 = canvas.width + Math.random() * 100;
+                    line.x2 = line.x1 + Math.random() * 200 + 100;
+                    line.y1 = canvas.height * 0.7 + Math.random() * canvas.height * 0.3;
+                    line.y2 = line.y1 - Math.random() * 150 - 50;
+                    line.color = bullishColors[Math.floor(Math.random() * bullishColors.length)];
+                }
+            });
+
+            ctx.shadowBlur = 0;
+
+            // Draw upward arrows
+            priceArrows.forEach(arrow => {
+                ctx.globalAlpha = arrow.opacity;
+                ctx.fillStyle = '#FFD700';
+                ctx.strokeStyle = '#FFD700';
+                ctx.lineWidth = 2;
+
+                ctx.save();
+                ctx.translate(arrow.x, arrow.y);
+                ctx.rotate(arrow.rotation);
+
+                // Draw upward arrow
+                ctx.beginPath();
+                ctx.moveTo(0, -arrow.size);
+                ctx.lineTo(-arrow.size * 0.5, 0);
+                ctx.lineTo(-arrow.size * 0.2, 0);
+                ctx.lineTo(-arrow.size * 0.2, arrow.size * 0.5);
+                ctx.lineTo(arrow.size * 0.2, arrow.size * 0.5);
+                ctx.lineTo(arrow.size * 0.2, 0);
+                ctx.lineTo(arrow.size * 0.5, 0);
                 ctx.closePath();
                 ctx.fill();
 
-                // Move line from right to left
-                line.x -= line.speed;
+                ctx.restore();
+
+                // Move arrows upward
+                arrow.y -= arrow.speed;
+                arrow.x += (Math.random() - 0.5) * 0.5;
 
                 // Reset when off screen
-                if (line.x - line.length < 0) {
-                    line.x = canvas.width + line.length;
-                    line.y = Math.random() * canvas.height;
-                    line.color = blueShades[Math.floor(Math.random() * blueShades.length)];
+                if (arrow.y < -arrow.size) {
+                    arrow.y = canvas.height + arrow.size;
+                    arrow.x = Math.random() * canvas.width;
                 }
             });
 
-            ctx.shadowBlur = 0;
+            // Draw floating dollar signs
+            dollarSigns.forEach(dollar => {
+                ctx.globalAlpha = dollar.opacity;
+                ctx.fillStyle = '#FFD700';
+                ctx.font = `${dollar.size}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.shadowBlur = 5;
+                ctx.shadowColor = '#FFD700';
 
-            // Draw electric particles
-            particles.forEach(particle => {
-                ctx.globalAlpha = particle.opacity;
-                ctx.fillStyle = particle.color;
-                ctx.shadowBlur = 10;
-                ctx.shadowColor = particle.color;
+                ctx.save();
+                ctx.translate(dollar.x, dollar.y);
+                ctx.rotate(dollar.rotation * Math.PI / 180);
+                ctx.fillText('$', 0, 0);
+                ctx.restore();
 
-                ctx.beginPath();
-                ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-                ctx.fill();
+                // Float upward
+                dollar.y -= dollar.speed;
+                dollar.rotation += 1;
 
-                // Move particles
-                particle.x += particle.vx;
-                particle.y += particle.vy;
-
-                // Bounce off edges
-                if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
-                if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
-
-                // Keep particles in bounds
-                particle.x = Math.max(0, Math.min(canvas.width, particle.x));
-                particle.y = Math.max(0, Math.min(canvas.height, particle.y));
-            });
-
-            ctx.shadowBlur = 0;
-
-            // Randomly spawn lightning bolts
-            if (Math.random() < 0.02) {
-                const startX = Math.random() * canvas.width;
-                const startY = 0;
-                const segments: Array<{ x: number; y: number }> = [{ x: startX, y: startY }];
-                
-                let currentX = startX;
-                let currentY = startY;
-                const segmentCount = 8 + Math.floor(Math.random() * 5);
-
-                for (let i = 0; i < segmentCount; i++) {
-                    currentX += (Math.random() - 0.5) * 60;
-                    currentY += canvas.height / segmentCount + Math.random() * 20;
-                    segments.push({ x: currentX, y: currentY });
-                }
-
-                lightningBolts.push({
-                    x: startX,
-                    y: startY,
-                    segments,
-                    opacity: 1,
-                    lifetime: 15,
-                });
-            }
-
-            // Draw and update lightning bolts
-            lightningBolts.forEach((bolt, index) => {
-                ctx.globalAlpha = bolt.opacity;
-                ctx.strokeStyle = '#FFFFFF';
-                ctx.lineWidth = 3;
-                ctx.shadowBlur = 20;
-                ctx.shadowColor = '#00BFFF';
-
-                ctx.beginPath();
-                bolt.segments.forEach((segment, i) => {
-                    if (i === 0) {
-                        ctx.moveTo(segment.x, segment.y);
-                    } else {
-                        ctx.lineTo(segment.x, segment.y);
-                    }
-                });
-                ctx.stroke();
-
-                // Draw glow
-                ctx.lineWidth = 6;
-                ctx.globalAlpha = bolt.opacity * 0.3;
-                ctx.strokeStyle = '#00BFFF';
-                ctx.beginPath();
-                bolt.segments.forEach((segment, i) => {
-                    if (i === 0) {
-                        ctx.moveTo(segment.x, segment.y);
-                    } else {
-                        ctx.lineTo(segment.x, segment.y);
-                    }
-                });
-                ctx.stroke();
-
-                // Update lifetime
-                bolt.lifetime--;
-                bolt.opacity = bolt.lifetime / 15;
-
-                // Remove dead bolts
-                if (bolt.lifetime <= 0) {
-                    lightningBolts.splice(index, 1);
+                // Reset when off screen
+                if (dollar.y < -dollar.size) {
+                    dollar.y = canvas.height + dollar.size;
+                    dollar.x = Math.random() * canvas.width;
+                    dollar.rotation = Math.random() * 360;
                 }
             });
 
@@ -288,7 +337,7 @@ const ModernLoader: React.FC<ModernLoaderProps> = ({ onFinish }) => {
             { duration: 900, text: 'Activating Trading Signals', progress: 70 },
             { duration: 700, text: 'Loading Strategies', progress: 85 },
             { duration: 600, text: 'Preparing Dashboard', progress: 95 },
-            { duration: 500, text: 'Welcome to Leila Fx', progress: 100 },
+            { duration: 500, text: 'Welcome to State Fx', progress: 100 },
         ];
 
         let currentPhase = 0;
@@ -366,11 +415,11 @@ const ModernLoader: React.FC<ModernLoaderProps> = ({ onFinish }) => {
 
             {/* Main content */}
             <div className='zeus-loader__content'>
-                {/* Leila Fx Logo - Company Logo */}
+                {/* State Fx Logo - Company Logo */}
                 <div className='zeus-loader__logo-container'>
                     <img 
-                        src="/leilafxlogo.png" 
-                        alt="Leila Fx Logo" 
+                        src="/statefxlogo.png" 
+                        alt="State Fx Logo" 
                         className='zeus-loader__logo company-logo'
                     />
                     <div className='zeus-loader__logo-glow' />
@@ -468,7 +517,7 @@ const ModernLoader: React.FC<ModernLoaderProps> = ({ onFinish }) => {
 
                 {/* Brand name */}
                 <h1 className='zeus-loader__brand'>
-                    <span className='zeus-loader__brand-zeus'>LEILA</span>
+                    <span className='zeus-loader__brand-zeus'>STATE</span>
                     <span className='zeus-loader__brand-trading'>FX</span>
                 </h1>
 

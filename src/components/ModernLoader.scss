@@ -1,18 +1,18 @@
-// Leila Fx Loader - Lightning Tech Theme
+// State Fx Loader - Bullish Market Theme
 .zeus-loader {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(135deg, #050a1e 0%, #0a0f28 50%, #0f1432 100%);
+    background: linear-gradient(135deg, #001408 0%, #001e0a 50%, #00280f 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 10000;
     overflow: hidden;
 
-    // Tech lines animation canvas
+    // Bullish market animation canvas
     &__matrix-canvas {
         position: absolute;
         top: 0;
@@ -22,21 +22,21 @@
         z-index: 1;
     }
 
-    // Lightning flash effect
+    // Market surge flash effect
     &__lightning-flash {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: radial-gradient(circle, rgba(0, 191, 255, 0.3) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(0, 255, 136, 0.3) 0%, transparent 70%);
         opacity: 0;
         z-index: 2;
         pointer-events: none;
         transition: opacity 0.1s;
 
         &.active {
-            animation: lightningFlash 0.2s;
+            animation: marketSurge 0.2s;
         }
     }
 
@@ -196,19 +196,19 @@
     }
 
     &__brand-zeus {
-        color: #00BFFF;
+        color: #00FF88;
         text-shadow: 
-            0 0 20px rgba(0, 191, 255, 0.8),
-            0 0 40px rgba(0, 191, 255, 0.5),
+            0 0 20px rgba(0, 255, 136, 0.8),
+            0 0 40px rgba(0, 255, 136, 0.5),
             0 2px 4px rgba(0, 0, 0, 0.5);
         animation: textGlow 2s infinite alternate;
     }
 
     &__brand-trading {
-        color: #1E90FF;
+        color: #FFD700;
         font-size: 2rem;
         text-shadow: 
-            0 0 15px rgba(30, 144, 255, 0.6),
+            0 0 15px rgba(255, 215, 0, 0.6),
             0 2px 4px rgba(0, 0, 0, 0.5);
     }
 
@@ -274,7 +274,7 @@
 
     &__progress-fill {
         height: 100%;
-        background: linear-gradient(90deg, #00BFFF 0%, #1E90FF 50%, #4169E1 100%);
+        background: linear-gradient(90deg, #00FF88 0%, #32CD32 50%, #FFD700 100%);
         border-radius: 10px;
         position: relative;
         transition: width 0.3s ease-out;
@@ -336,6 +336,15 @@
 }
 
 // Animations
+@keyframes marketSurge {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
 @keyframes lightningFlash {
     0%, 100% {
         opacity: 0;
