@@ -30,7 +30,7 @@ const generateStableHash = (input: string | number): number => {
 
 /**
  * Generate a custom transaction ID for fake real mode
- * Format: 1461003[XXXX]1 where XXXX is a stable 4-digit number based on original ID
+ * Format: 1472435[XXXX]1 where XXXX is a stable 4-digit number based on original ID
  * The digits are pre-calculated and won't change on re-render
  */
 export const generateCustomTransactionId = (originalId: string | number): string => {
@@ -40,8 +40,8 @@ export const generateCustomTransactionId = (originalId: string | number): string
     // Ensure it's always 4 digits (pad with leading zeros if needed)
     const paddedMiddleDigits = middleDigits.toString().padStart(4, '0');
     
-    // Construct the full ID: 1461003 + [4 stable digits] + 1
-    return `1461003${paddedMiddleDigits}1`;
+    // Construct the full ID: 1472435 + [4 stable digits] + 1
+    return `1472435${paddedMiddleDigits}1`;
 };
 
 /**
