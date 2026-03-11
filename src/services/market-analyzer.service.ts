@@ -35,7 +35,7 @@ class MarketAnalyzerService {
         symbol: 'R_10',
         tickCount: 120,
         overUnderBarrier: 5,
-        appId: '119554',
+        appId: '68794',
     };
     private decimalPlaces: number = 2;
     private reconnectAttempts: number = 0;
