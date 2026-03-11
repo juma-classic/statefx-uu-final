@@ -36,7 +36,7 @@ const predictionGenerator = (): fc.Arbitrary<ProbabilityPrediction> => {
 
 describe('Alert Manager - Property-Based Tests', () => {
     /**
-     * Feature: leila-analysis-enhancement, Property 15: High confidence alert creation
+     * Feature: state-analysis-enhancement, Property 15: High confidence alert creation
      * Validates: Requirements 5.1
      */
     test('Property 15: high confidence predictions create alerts', () => {
@@ -87,7 +87,7 @@ describe('Alert Manager - Property-Based Tests', () => {
     });
 
     /**
-     * Feature: leila-analysis-enhancement, Property 16: Pattern detection alert
+     * Feature: state-analysis-enhancement, Property 16: Pattern detection alert
      * Validates: Requirements 5.2
      */
     test('Property 16: 5 consecutive same digits trigger pattern alert', () => {
@@ -134,7 +134,7 @@ describe('Alert Manager - Property-Based Tests', () => {
     });
 
     /**
-     * Feature: leila-analysis-enhancement, Property 17: Alert display completeness
+     * Feature: state-analysis-enhancement, Property 17: Alert display completeness
      * Validates: Requirements 5.3
      */
     test('Property 17: alerts contain timestamp and message', () => {
@@ -163,7 +163,7 @@ describe('Alert Manager - Property-Based Tests', () => {
     });
 
     /**
-     * Feature: leila-analysis-enhancement, Property 20: Alert list size limit
+     * Feature: state-analysis-enhancement, Property 20: Alert list size limit
      * Validates: Requirements 5.6
      */
     test('Property 20: alert list never exceeds 10 items', () => {

@@ -55,14 +55,14 @@ export function createTradeSignal(
 
 /**
  * Dispatch trade signal via custom event
- * Dispatches a 'leila.trade.signal' event to the window object
+ * Dispatches a 'state.trade.signal' event to the window object
  * 
  * @param signal - Trade signal to dispatch
  * @returns True if dispatch was successful, false otherwise
  */
 export function dispatchTradeSignal(signal: TradeSignal): boolean {
     try {
-        const event = new CustomEvent('leila.trade.signal', {
+        const event = new CustomEvent('state.trade.signal', {
             detail: signal,
             bubbles: true,
             cancelable: true

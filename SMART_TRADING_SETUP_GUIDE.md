@@ -60,7 +60,7 @@ The Smart Trading feature provides automated trading based on real-time market a
 
 The system needs a Deriv API token to execute trades. You have two options:
 
-#### Option A: Login through Leila Fx
+#### Option A: Login through State Fx
 1. Click the "Login" button in the header
 2. Login with your Deriv account
 3. The system will automatically store your auth token

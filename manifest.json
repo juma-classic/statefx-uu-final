@@ -1,8 +1,8 @@
 {
-    "name": "Leila Fx",
-    "short_name": "Leila Fx",
+    "name": "State Fx",
+    "short_name": "State Fx",
     "theme_color": "#14b8a6",
-    "description": "Professional automated trading platform - Reliable trading tools by Leila Fx.",
+    "description": "Professional automated trading platform - Reliable trading tools by State Fx.",
     "background_color": "#0f1419",
     "display": "standalone",
     "start_url": "/",

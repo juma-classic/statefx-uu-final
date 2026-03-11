@@ -961,7 +961,7 @@ const AppWrapper = observer(() => {
         };
     }, [bots, handleBotClick]);
 
-    // Listen for MatchesMaster bot auto-open events from Leila Analysis
+    // Listen for MatchesMaster bot auto-open events from State Analysis
     useEffect(() => {
         const handleMatchesMasterOpen = async (event: Event) => {
             const customEvent = event as CustomEvent;
@@ -971,7 +971,7 @@ const AppWrapper = observer(() => {
             // Find the MatchesMaster bot in the bots array
             const matchesMasterBot = bots.find(b => b.filePath === 'MatchesMaster.xml');
             if (matchesMasterBot) {
-                console.log('✅ Found MatchesMaster bot, configuring with Leila prediction...');
+                console.log('✅ Found MatchesMaster bot, configuring with State prediction...');
 
                 // Parse and configure the XML with Zeus parameters
                 const parser = new DOMParser();
@@ -1534,7 +1534,7 @@ const AppWrapper = observer(() => {
         };
     }, [bots, handleBotClick, setActiveTab]);
 
-    // Listen for Raziel Over Under bot loading events from Leila AI
+    // Listen for Raziel Over Under bot loading events from State AI
     useEffect(() => {
         const handleRazielBotLoad = async (event: Event) => {
             let eventData;
@@ -1580,7 +1580,7 @@ const AppWrapper = observer(() => {
             // Find the Raziel Over Under bot in the bots array
             const bot = bots.find(b => b.filePath === botFile);
             if (bot) {
-                console.log('✅ Found Raziel Over Under bot, configuring with Leila parameters...');
+                console.log('✅ Found Raziel Over Under bot, configuring with State parameters...');
 
                 // Parse and configure the XML with Zeus parameters
                 const parser = new DOMParser();
@@ -1726,7 +1726,7 @@ const AppWrapper = observer(() => {
         };
     }, [bots, handleBotClick, setActiveTab]);
 
-    // Listen for PATEL bot loading events from Leila AI
+    // Listen for PATEL bot loading events from State AI
     useEffect(() => {
         const handlePatelBotLoad = async (event: Event) => {
             let eventData;
@@ -2044,7 +2044,7 @@ const AppWrapper = observer(() => {
         };
     }, [bots, handleBotClick, setActiveTab]);
 
-    // Listen for EVEN/ODD bot loading events from Leila AI
+    // Listen for EVEN/ODD bot loading events from State AI
     useEffect(() => {
         const handleEvenOddBotLoad = async (event: Event) => {
             let eventData: any;
@@ -3257,7 +3257,7 @@ const AppWrapper = observer(() => {
                                                 }}
                                             />
                                         )}
-                                        <span style={{ position: 'relative', zIndex: 1 }}>⚡ LEILA AI</span>
+                                        <span style={{ position: 'relative', zIndex: 1 }}>⚡ STATE AI</span>
                                     </button>
 
                                     <button
@@ -3611,7 +3611,7 @@ const AppWrapper = observer(() => {
                                 </div>
                             </div>
                         </div>
-                        {/* LEILA ANALYSIS TAB - MOVED TO ANALYSIS TOOL */}
+                        {/* STATE ANALYSIS TAB - MOVED TO ANALYSIS TOOL */}
                         {/* SIGNALS TAB */}
                         <div
                             label={

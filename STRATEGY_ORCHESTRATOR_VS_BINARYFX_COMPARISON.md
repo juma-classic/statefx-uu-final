@@ -74,7 +74,7 @@ Both systems are designed for trading automation on Deriv, but they serve differ
 
 #### 1. **Signal Aggregation**
 - Collects signals from MULTIPLE sources:
-  - Leila Analysis
+  - State Analysis
   - Advanced Algo
   - Patel Signals
   - Signal Savvy
@@ -184,7 +184,7 @@ Both systems are designed for trading automation on Deriv, but they serve differ
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    LEILA FX                          │
+│                    STATE FX                          │
 └─────────────────────────────────────────────────────────────┘
                               │
                               ▼
@@ -199,7 +199,7 @@ Both systems are designed for trading automation on Deriv, but they serve differ
         ┌─────────────────────┼─────────────────────┐
         ▼                     ▼                     ▼
 ┌──────────────┐    ┌──────────────┐      ┌──────────────┐
-│  BinaryFX    │    │ Leila Analysis│      │ Patel Signals│
+│  BinaryFX    │    │ State Analysis│      │ Patel Signals│
 │  Analyzer    │    │              │      │              │
 │              │    │              │      │              │
 │ • Generates  │    │ • Generates  │      │ • Generates  │
@@ -215,7 +215,7 @@ Both systems are designed for trading automation on Deriv, but they serve differ
                     │  BOT EXECUTION   │
                     │  • PATEL Bot     │
                     │  • Auto Differ   │
-                    │  • Leila AI Pro   │
+                    │  • State AI Pro   │
                     │  • Dollar Flipper│
                     └──────────────────┘
 ```
@@ -278,7 +278,7 @@ Both systems are designed for trading automation on Deriv, but they serve differ
 ```typescript
 // Add BinaryFX as signal source
 export interface Signal {
-    source: 'leila-analysis' | 'advanced-algo' | 'patel-signals' | 
+    source: 'state-analysis' | 'advanced-algo' | 'patel-signals' | 
             'signal-savvy' | 'digit-hacker' | 'track-signals' | 
             'binaryfx-analyzer';  // ← Add this
     // ... rest of interface

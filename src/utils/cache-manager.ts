@@ -1,5 +1,5 @@
 /**
- * Cache Manager for Leila Analysis Tool
+ * Cache Manager for State Analysis Tool
  * Provides caching functionality with TTL support and corruption recovery
  */
 
@@ -11,7 +11,7 @@ export interface CacheEntry<T> {
 
 export class CacheManager {
     private static readonly DEFAULT_TTL = 5 * 60 * 1000; // 5 minutes in milliseconds
-    private static readonly STORAGE_PREFIX = 'leila_cache_';
+    private static readonly STORAGE_PREFIX = 'state_cache_';
 
     /**
      * Get cached data by key

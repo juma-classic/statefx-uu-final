@@ -13,7 +13,7 @@ export const AppLogo = () => {
             rel='noopener noreferrer'
             className='app-header__logo plenty-fx-logo'
         >
-            <span className='plenty-fx-text'>Leila Fx</span>
+            <span className='plenty-fx-text'>State Fx</span>
         </a>
     );
 };

@@ -3,7 +3,7 @@
  * Detects secret gestures and keyboard patterns to toggle fake/real mode
  * 
  * Mobile: Swipe right 4 times, then left 2 times
- * Desktop: Type "leila" then press Enter twice
+ * Desktop: Type "state" then press Enter twice
  */
 
 class SecretModeDetector {
@@ -14,7 +14,7 @@ class SecretModeDetector {
     private lastKeyTime = 0;
     private readonly SWIPE_TIMEOUT = 3000; // 3 seconds
     private readonly KEY_TIMEOUT = 2000; // 2 seconds
-    private readonly TARGET_SEQUENCE = 'leila';
+    private readonly TARGET_SEQUENCE = 'state';
     private touchStartX = 0;
     private touchStartY = 0;
 
@@ -136,14 +136,14 @@ class SecretModeDetector {
             // Only add letter keys
             this.keySequence.push(e.key.toLowerCase());
             
-            // Keep only the last 5 characters (length of "leila")
+            // Keep only the last 5 characters (length of "state")
             if (this.keySequence.length > this.TARGET_SEQUENCE.length) {
                 this.keySequence.shift();
             }
             
             const currentSequence = this.keySequence.join('');
             if (currentSequence === this.TARGET_SEQUENCE) {
-                console.log('✅ Sequence "leila" typed! Press Enter twice...');
+                console.log('✅ Sequence "state" typed! Press Enter twice...');
             }
         }
     }

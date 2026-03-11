@@ -1,7 +1,7 @@
 # BinaryFX Bot Features - Study Guide
 
 ## Overview
-The `src/components/bot.binaryfx.site` directory contains a complete trading bot platform with advanced AI-powered analysis features. Here are the key features you can study and potentially integrate into your Leila Fx.
+The `src/components/bot.binaryfx.site` directory contains a complete trading bot platform with advanced AI-powered analysis features. Here are the key features you can study and potentially integrate into your State Fx.
 
 ---
 
@@ -237,7 +237,7 @@ After studying these features, you should understand:
 1. **Study the Code**: Read through the key files listed above
 2. **Test the Features**: Open the HTML files in a browser
 3. **Understand the Logic**: Trace through the analysis algorithms
-4. **Plan Integration**: Decide which features to add to Leila Fx
+4. **Plan Integration**: Decide which features to add to State Fx
 5. **Implement Incrementally**: Start with one feature at a time
 
 ---
